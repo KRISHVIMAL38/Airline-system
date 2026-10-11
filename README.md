@@ -10,6 +10,10 @@ The primary goal of this project is to demonstrate how a complex, distributed bu
 
 ---
 
+<img width="3200" height="2660" alt="image" src="https://github.com/user-attachments/assets/fe986505-ef73-4cd2-ae40-01344508181e" />
+
+
+
 # 🧩 Microservices
 
 | Service | Responsibility |
