@@ -1,0 +1,20 @@
+package com.zosh.payload.response;
+
+import com.zosh.enums.AirlineStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class AirlineDropdownItem {
+    private Long id;
+    private String iataCode;
+    private String iacoCode;
+    private String name;
+    private String logoUrl;
+    private  String country;
+}

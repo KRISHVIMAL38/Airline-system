@@ -1,0 +1,54 @@
+package com.zosh.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.Instant;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+public class BaggagePolicy {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToOne
+    @JsonIgnore
+    private Fare fare;
+
+    @Column(nullable = false)
+    private String name;
+
+    private String description;
+    private Double cabinBaggageMaxWeight;
+    private Integer cabinBaggagePieces = 1;
+    private Double cabinBaggageWeightPerPiece;
+    private Integer cabinBaggageMaxDimensions;
+
+    private Double checkInBaggageMaxWeight;
+    private Integer checkInBaggagePieces = 1;
+
+    private Double checkInBaggageWeightPerPiece;
+    private Integer freeCheckedBagsAllowance;
+    private Boolean priorityBaggage = false;
+    private Boolean extraBaggageAllowance = false;
+
+    private Long airlineId;
+
+    @CreationTimestamp
+    private Instant createdAt;
+
+    @UpdateTimestamp
+    private Instant updatedAt;
+}

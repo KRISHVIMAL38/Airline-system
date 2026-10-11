@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-registry
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false #We don't want to register this service with itself
+
+
+server:
+  port: 9200

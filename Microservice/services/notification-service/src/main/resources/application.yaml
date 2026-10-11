@@ -1,0 +1,50 @@
+server:
+  port: 9202
+
+spring:
+  application:
+    name: notification-service
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:krushnatmalavekar@gmail.com}
+    password: ${MAIL_APP_PASSWORD:ydki mesh tcfh szyc}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: false
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-service-group
+      #We might need additional properties here .Please check
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9200/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+
+notification:
+  from-email: ${MAIL_FROM:krushnatmalavekar@gmail.com}
+  from-name: "PushpakAir Notification"
+  checkin-url: "Your front url"

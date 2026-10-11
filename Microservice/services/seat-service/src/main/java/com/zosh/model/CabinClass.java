@@ -1,0 +1,64 @@
+package com.zosh.model;
+
+import com.zosh.enums.CabinClassType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.Instant;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+public class CabinClass {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CabinClassType name;
+
+    @Column(nullable = false)
+    private String code;
+
+    @OneToOne(mappedBy = "cabinClass",cascade = CascadeType.ALL,orphanRemoval = true)
+    private SeatMap seatMap;
+
+    private String description;
+
+    @Column(nullable = false)
+    private Long aircraftId;
+
+    @Column(nullable = false)
+    private Integer displayOrder = 0;
+
+    @Column(nullable = false)
+    private Boolean isActive = true;
+
+    @Column(nullable = false)
+    private Boolean isBookable;
+
+    private Integer typicalSeatPitch;
+    private Integer typicalSeatWidth;
+    private String seatType;
+
+    //Auditing fields
+
+    @CreatedDate
+    @Column(updatable = false , nullable = false)
+    private Instant createdAt;
+
+    @LastModifiedDate
+    @Column(nullable = false)
+    private Instant updatedAt;
+
+}

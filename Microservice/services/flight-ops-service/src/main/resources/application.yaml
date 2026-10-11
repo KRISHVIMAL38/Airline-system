@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: flight-ops-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: flight-ops-service-group
+
+  config:
+    import: optional:configserver:http://localhost:8888
